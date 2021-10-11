@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+        	<aop:aspectj-autoproxy />
+	<bean id="employee" class="com.yash.springmvcdemo.Spring_AOP.Employee">
+		
+		<property name="name" value="xyz"></property>
+		<property name="address" value="pune"></property>
+	</bean>
+
+ 	<bean id="HijackBeforeMethodBean"
+		class="com.yash.springmvcdemo.Spring_AOP.hijackBeforeMethodBean">
+	</bean>
+	<bean id="employeeProxy"
+		class="org.springframework.aop.framework.ProxyFactory">
+		 
+		<property name="target" ref="employee"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>employee</value>
+				<value>HijackBeforeMethodBean</value>
+			</list>
+		</property> 
+	</bean> 
+
+
+
+
+
+
+
+</beans>
